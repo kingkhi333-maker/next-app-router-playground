@@ -1,0 +1,225 @@
+npm install
+npm run dev
+/*
+Tyleir Apparel — Homepage Wireframe (top of file)
+
+Wireframe (visual layout / sections):
+
+1. Header (sticky): Logo left, Nav (Shop / About / Lookbook / Journal / Contact), Cart icon and mobile menu
+2. Hero: full-width image, headline, subheadline, primary CTA (Shop Now), secondary CTA (Learn More)
+3. Featured Collections: horizontal cards (New Drop, Streetwear Essentials, Limited), each with image + CTA
+4. Featured Products grid: 4 product cards (image, title, price, quick add)
+5. About: short brand story, small team photo or designer portrait, "Our Mission" bullets
+6. Lookbook / Gallery: 3-up image gallery with "Shop this look" overlay buttons
+7. Newsletter CTA: small form to collect email + incentive
+8. Social / Instagram strip (optional): horizontal thumbnails
+9. Footer: links, policies, social icons, copyright
+
+Notes on style and behavior:
+- Tailwind-first utility classes; responsive breakpoints included
+- Clean, modern streetwear aesthetic: bold headings, generous spacing, dark/neutral palette with accent color (example accent: #E11D48 — red)
+- Accessibility: semantic tags, alt attributes on images
+- This file is a single-page React component export you can drop into a CRA/Next.js app and preview.
+- Replace placeholder images and product data with your assets or CMS (Shopify/Contentful).
+
+---
+*/
+
+import React from 'react';
+
+// Example homepage component for Tyleir Apparel
+// Uses Tailwind CSS utility classes. No external assets required to run (placeholder images used).
+
+export default function TyleirHomepage() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900 antialiased">
+      {/* Header */}
+      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <a href="#" className="text-2xl font-extrabold tracking-tight">Tyleir<span className="text-red-600"> Apparel</span></a>
+            <nav className="hidden md:flex gap-6 ml-6 text-sm font-medium text-gray-700">
+              <a href="#shop" className="hover:text-gray-900">Shop</a>
+              <a href="#about" className="hover:text-gray-900">About</a>
+              <a href="#lookbook" className="hover:text-gray-900">Lookbook</a>
+              <a href="#journal" className="hover:text-gray-900">Journal</a>
+              <a href="#contact" className="hover:text-gray-900">Contact</a>
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button className="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-md border text-sm">Sign in</button>
+            <a href="#cart" className="px-3 py-2 rounded-md bg-gray-900 text-white text-sm">Cart</a>
+            {/* Mobile menu button (simple) */}
+            <button className="md:hidden p-2 rounded-md" aria-label="open menu">☰</button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative">
+        <div className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <p className="text-sm uppercase tracking-widest text-gray-500">New Drop — Limited Edition</p>
+            <h1 className="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">Define Your Style. Wear Your Vision.</h1>
+            <p className="mt-6 text-gray-700 max-w-xl">Tyleir Apparel crafts bold streetwear essentials designed for movement, comfort, and confident self-expression. Ethically produced in small runs.</p>
+            <div className="mt-8 flex gap-4">
+              <a href="#shop" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-red-600 text-white font-semibold">Shop Now</a>
+              <a href="#about" className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border">Learn More</a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="w-full h-80 md:h-96 rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://images.unsplash.com/photo-1520975911235-1f8e46b7a4a2?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Tyleir Apparel hero" className="w-full h-full object-cover" />
+            </div>
+            <div className="-mt-20 md:-mt-28 ml-4 md:ml-6 grid grid-cols-3 gap-4 pointer-events-none">
+              <div className="col-span-1"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Collections */}
+      <section id="shop" className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-bold">Featured Collections</h2>
+          <p className="mt-2 text-gray-600">Hand-picked zones of the shop — designed for quick browsing.</p>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {['New Drop','Streetwear Essentials','Limited'].map((c, i) => (
+              <div key={c} className="rounded-xl overflow-hidden bg-white shadow">
+                <div className="h-44 md:h-52 w-full overflow-hidden">
+                  <img src={`https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder-${i}`} alt={`${c} image`} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg">{c}</h3>
+                  <p className="mt-2 text-sm text-gray-600">Curated pieces that represent the core aesthetic of Tyleir Apparel.</p>
+                  <div className="mt-4">
+                    <a href="#" className="text-sm font-semibold">Shop {c} →</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-bold">Featured Products</h2>
+        <p className="mt-2 text-gray-600">Customer favorites and editor picks.</p>
+
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {Array.from({length:4}).map((_, idx) => (
+            <article key={idx} className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="h-56 w-full overflow-hidden">
+                <img src={`https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder-prod-${idx}`} alt={`Product ${idx+1}`} className="w-full h-full object-cover" />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold">Block Logo Hoodie</h3>
+                <p className="mt-1 text-sm text-gray-600">Comfort fit • 100% cotton</p>
+                <div className="mt-3 flex items-center justify-between">
+                  <div className="text-lg font-bold">$68</div>
+                  <button className="px-3 py-1 rounded bg-gray-900 text-white text-sm">Add</button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="bg-white border-t py-16">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 className="text-2xl font-bold">Our Story</h2>
+            <p className="mt-4 text-gray-700">Founded by designer Tyleir, Tyleir Apparel blends bold urban aesthetics with mindful production. We create limited runs to reduce waste and keep collections fresh. Our designs favor strong silhouettes, graphic identity, and durable materials.</p>
+            <ul className="mt-4 text-gray-600 space-y-2">
+              <li>• Small-batch production</li>
+              <li>• Ethically sourced materials</li>
+              <li>• Local collaborations</li>
+            </ul>
+            <div className="mt-6">
+              <a href="#lookbook" className="inline-block px-4 py-2 rounded bg-red-600 text-white font-semibold">See Lookbook</a>
+            </div>
+          </div>
+
+          <div>
+            <div className="rounded-lg overflow-hidden shadow h-80">
+              <img src="https://images.unsplash.com/photo-1520975911235-1f8e46b7a4a2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder-about" alt="Designer portrait" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lookbook / Gallery */}
+      <section id="lookbook" className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-bold">Lookbook</h2>
+          <p className="mt-2 text-gray-600">Styled shoots and real-world fits.</p>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {Array.from({length:3}).map((_, i) => (
+              <div key={i} className="relative rounded-lg overflow-hidden">
+                <img src={`https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder-look-${i}`} alt={`Look ${i+1}`} className="w-full h-72 object-cover" />
+                <div className="absolute bottom-4 left-4">
+                  <a href="#" className="px-3 py-2 bg-white/90 rounded font-semibold text-sm">Shop this look</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h3 className="text-2xl font-bold">Join the Tyleir Tribe</h3>
+          <p className="mt-2 text-gray-600">Get 10% off your first order and early access to drops.</p>
+          <form className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <input aria-label="Email" type="email" placeholder="Your email" className="w-full sm:w-auto min-w-0 px-4 py-3 border rounded-md" />
+            <button className="px-5 py-3 rounded-md bg-gray-900 text-white font-semibold">Subscribe</button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-200 py-10">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <h4 className="font-bold text-white">Tyleir Apparel</h4>
+            <p className="mt-3 text-sm">Bold streetwear. Small batches. Big attitude.</p>
+          </div>
+
+          <div>
+            <h5 className="font-semibold">Shop</h5>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li><a href="#" className="hover:underline">Men's</a></li>
+              <li><a href="#" className="hover:underline">Women's</a></li>
+              <li><a href="#" className="hover:underline">Accessories</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="font-semibold">Connect</h5>
+            <ul className="mt-3 space-y-2 text-sm text-gray-300">
+              <li><a href="#" className="hover:underline">Contact</a></li>
+              <li><a href="#" className="hover:underline">Journal</a></li>
+              <li><a href="#" className="hover:underline">Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 mt-8 border-t border-gray-800 pt-6 text-sm text-gray-500 flex items-center justify-between">
+          <div>© {new Date().getFullYear()} Tyleir Apparel — All rights reserved.</div>
+          <div className="flex gap-4">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="X">X</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
